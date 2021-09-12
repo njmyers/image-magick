@@ -3,7 +3,7 @@
 directory=$(pwd)
 user=$(id -u)
 group=$(id -g)
-cmd="identify ${@}"
+cmd="magick-script ${@}"
 
 docker run --workdir /app \
   --volume "${directory}":/app \

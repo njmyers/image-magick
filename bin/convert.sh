@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ $# -ge 2 ]; then
-  arguments=$(($# - 2))
-  options=${@:1:$arguments}
-  input="${@: -2:1}"
-  output="${@: -1:1}"
+directory=$(pwd)
+user=$(id -u)
+group=$(id -g)
+cmd="convert ${@}"
 
-  docker run -i njmyers/image-magick "convert ${options} - -" <${input} >${output}
-else
-  docker run -i njmyers/image-magick "convert ${@}"
-fi
+docker run --workdir /app \
+  --volume "${directory}":/app \
+  --user "${user}:${group}" \
+  -t \
+  njmyers/image-magick "${cmd}"

@@ -40,4 +40,5 @@ FROM alpine:3.14 AS executable
 COPY --from=builder /usr /usr
 COPY --from=builder /bin /bin
 
-ENTRYPOINT [ "sh", "-c" ]
+WORKDIR /app
+ENTRYPOINT ["sh", "-c", "--"]

@@ -3,7 +3,7 @@
 directory=$(pwd)
 user=$(id -u)
 group=$(id -g)
-cmd="identify ${@}"
+cmd="montage ${@}"
 
 docker run --workdir /app \
   --volume "${directory}":/app \
